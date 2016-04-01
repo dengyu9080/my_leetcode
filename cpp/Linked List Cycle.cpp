@@ -9,24 +9,20 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if (!head||!head->next) {
+           if (!head||!head->next) {
         return false;
     }
     
-    set<ListNode*>myset;
+    ListNode *slow = head;
+    ListNode *fast = head;
     
-    while (head) {
-        if(myset.find(head)==myset.end())
-        {
-            myset.insert(head);
-        }
-        else
-            return true;
+    while (fast) {
+        fast = fast->next;
+        fast = fast?fast->next:NULL;
+        slow = slow->next;
         
-        head = head->next;
-        
+        if (slow ==fast)return true;
     }
-    
     return false;
     }
 };
